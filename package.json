@@ -1,0 +1,39 @@
+{
+  "name": "thermo-be",
+  "version": "1.0.0",
+  "description": "thermo Backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Thermo"
+  ],
+  "author": {
+    "name": "Nitesh Kumar Gupta",
+    "email": "nit90esh@gmail.com"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^6.1.0",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.19.1"
+  },
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "helmet": "^3.21.0",
+    "lodash": "^4.17.15",
+    "mongoose": "^5.7.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  }
+}
