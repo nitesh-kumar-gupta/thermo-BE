@@ -13,7 +13,7 @@ module.exports = function() {
         next();
     });
     configRoute(router, [
-        require('./user.route')
+        require('./route')
     ]);
     return router;
 };
