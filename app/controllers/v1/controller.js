@@ -5,8 +5,8 @@ const helper = require('./../../helpers/helper');
 module.exports = {
     index: async (req, res) => {
         try {
-            helper.process(req.file.path);
-            return response.success(res, constants.success.OK, {message: '#userIndex'});
+            let data = await helper.process(req.file.path);
+            return response.success(res, constants.success.OK, data);
         } catch(err) {
             return response.error(res, err);
         }

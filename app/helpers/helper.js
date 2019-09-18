@@ -15,20 +15,24 @@ const Helper = {
         data.forEach((d) => {
             if (d.ts > start) {
                 mt = moment(d.ts).month() + 1;
+                let yr = moment(d.ts).year();
                 if(mth !== mt) {
-                    // if (metrics.length > 0) {
-                    //     metrics.map((m) => {
-                    //         if(m.month === mt-1){
-                    //             console.log('MMMMMMMM ', m.month, mt)
-                    //             m.value = sum/count;
-                    //         }
-                    //     });
-                    // }
-                    // console.log(mt, ' sum: ', sum, ' count: ', count);
+                    if (metrics.length > 0) {
+                        metrics.map((m) => {
+                            if (mt-1 === 0) {
+                                if (m.month === 12) {
+                                    m.value = Math.ceil(sum / count);
+                                }
+                            } else if(m.month === mt-1) {
+                                m.value = Math.ceil(sum / count);
+                            }
+                        });
+                    }
                     sum = 0;
                     count = 0;
                     let obj = {
                         month: mt,
+                        year: yr,
                         value: 0
                     };
                     mth = mt;
@@ -41,15 +45,15 @@ const Helper = {
                 }
             }
         });
-        // if (metrics.length > 0) {
-        //     metrics.map((m) => {
-        //         if (m.month === mt - 1)
-        //             m.value = sum / count;
-        //     });
-        // }
-        // console.log(mt, ' sum: ', sum, ' count: ', count);
-        console.log('metricsmetrics: ', metrics);
-        return 'dddd';
+        if (metrics.length > 0) {
+            metrics.map((m) => {
+                if (m.month === mt) {
+                    m.value = Math.ceil(sum / count);
+                }
+            });
+        }
+        fs.unlinkSync(file);
+        return metrics;
     }
 };
 module.exports = Helper;
