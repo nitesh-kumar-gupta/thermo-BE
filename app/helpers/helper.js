@@ -1,4 +1,6 @@
 'use strict';
+const mongoose = require('mongoose');
+const Thermo = mongoose.model('Thermo');
 const moment = require('moment');
 const fs = require('fs');
 const Helper = {
@@ -53,7 +55,21 @@ const Helper = {
             });
         }
         fs.unlinkSync(file);
+        this.insertData(data);
         return metrics;
+    },
+    async insertData(data) {
+        let length = data.length;
+        let start = 0;
+        let end = 100000;
+        if(length) {
+            while(end < length) {
+                let obj = data.slice(start, end);
+                await Thermo.insertMany(obj);
+                start = end;
+                end += 100000;
+            }
+        }
     }
 };
 module.exports = Helper;
